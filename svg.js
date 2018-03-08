@@ -23,7 +23,7 @@ var newCircle = function(x, y, r, color){
           e.target.remove(e);
           var circle = newCircle(Math.random() * svg.getBoundingClientRect().width, Math.random() * svg.getBoundingClientRect().height, radius, startColor);
           circle.display();
-          coords.value = "["+mouseX+","+mouseY+"]";
+          coords.value = "["+Math.floor(circle.xcor)+","+Math.floor(circle.ycor)+"]";
         }
         e.stopPropagation();
       },
@@ -44,9 +44,8 @@ var newCircle = function(x, y, r, color){
 }
 
 var placeDot = function(e){
-    var bounds = svg.getBoundingClientRect();
-    mouseX = e.pageX - bounds.left - scrollX;
-    mouseY = e.pageY - bounds.top - scrollY;
+    mouseX = e.offsetX;
+    mouseY = e.offsetY;
     var circle = newCircle(mouseX, mouseY, radius, startColor);
     circle.display();
     coords.value = "["+mouseX+","+mouseY+"]";
